@@ -18,6 +18,15 @@ services:
     build: ./backend
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-crewmatch}:${POSTGRES_PASSWORD:-crewmatch}@postgres:5432/${POSTGRES_DB:-crewmatch}?schema=public
+      JWT_SECRET: ${JWT_SECRET:-replace-with-at-least-32-characters-secret}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-1h}
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:5173}
+      PORT: ${PORT:-3000}
+      JWT_SECRET: ${JWT_SECRET:-replace-with-at-least-32-characters-secret}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-1h}
+      BOSS_EMAIL: ${BOSS_EMAIL:-boss@crewmatch.ph}
+      BOSS_PASSWORD_HASH: ${BOSS_PASSWORD_HASH:-replace-with-a-real-hash}
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:5173}
     ports:
       - "3000:3000"
     depends_on:

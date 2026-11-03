@@ -11,6 +11,7 @@ async function bootstrap() {
   const config = app.get(ConfigService);
   app.use(helmet());
   app.enableCors({ origin: config.getOrThrow<string>('corsOrigin') });
+  app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true }));
   const swagger = new DocumentBuilder()
     .setTitle('CrewMatch API')

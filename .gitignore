@@ -1,0 +1,119 @@
+# ==========================================
+# Operating System Files
+# ==========================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon_
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.lnk
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# Linux
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ==========================================
+# Common IDEs and Editors
+# ==========================================
+
+# Visual Studio Code
+.vscode/
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+# JetBrains (IntelliJ, WebStorm, PyCharm, etc.)
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ==========================================
+# Node.js / JavaScript / TypeScript
+# ==========================================
+node_modules/
+/jspm_packages/
+/bower_components/
+.npm/
+.eslintcache
+.stylelintcache
+.tsbuildinfo
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.lerna/
+
+# ==========================================
+# Python
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.env/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ==========================================
+# Environments, Credentials, and Secrets
+# ==========================================
+.env
+.env.accounts
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.example
+*.pem
+*.key
+*.secret
+credentials.json
+
+# ==========================================
+# Logs and Databases
+# ==========================================
+*.log
+*.sqlite
+*.sqlite3
+*.db

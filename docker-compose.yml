@@ -1,0 +1,50 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-crewmatch}
+      POSTGRES_USER: ${POSTGRES_USER:-crewmatch}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-crewmatch}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-crewmatch} -d ${POSTGRES_DB:-crewmatch}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-crewmatch}:${POSTGRES_PASSWORD:-crewmatch}@postgres:5432/${POSTGRES_DB:-crewmatch}?schema=public
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+  pgadmin:
+    image: dpage/pgadmin4:8
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@crewmatch.ph}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin12345}
+    ports:
+      - "5051:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      postgres:
+        condition: service_healthy
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+  ml-service:
+    build: ./ml-service
+    ports:
+      - "8000:8000"
+volumes:
+  postgres_data:
+  pgadmin_data:
